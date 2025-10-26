@@ -2,6 +2,7 @@ services:
   - type: web
     name: quant-ai-upload
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: python app.py
     envVars:
@@ -11,6 +12,4 @@ services:
         generateValue: true
       - key: ENVIRONMENT
         value: production
-      - key: PORT
-        value: 10000
 
