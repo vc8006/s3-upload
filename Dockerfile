@@ -4,14 +4,11 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Install uv (fast Python package installer)
-RUN pip install --no-cache-dir uv
+# Copy requirements file
+COPY requirements.txt .
 
-# Copy project files for dependency installation
-COPY pyproject.toml .
-
-# Install dependencies using uv
-RUN uv pip install --system --no-cache .
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY app.py .
