@@ -442,10 +442,16 @@ def initialize_app():
     
     logger.info("Application initialized successfully")
 
+# Initialize application when module is loaded (for gunicorn)
+try:
+    initialize_app()
+except Exception as e:
+    logger.critical(f"Failed to initialize application: {str(e)}")
+    raise
+
 # Run Application
 if __name__ == '__main__':
     try:
-        initialize_app()
         
         # Run server
         debug_mode = Config.ENVIRONMENT == 'development'

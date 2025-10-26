@@ -4,8 +4,10 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app --timeout 120 --workers 2
     envVars:
+      - key: PORT
+        value: 10000
       - key: IMGBB_API_KEY
         value: 2d18824b2ec85fb015d80e487eb7ab67
       - key: SECRET_KEY
